@@ -1,6 +1,6 @@
 [package]
 name = "small-wasm"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Anthony Ikeda <anthony.ikeda@cognizant.com>"]
 edition = "2018"
 
@@ -11,3 +11,12 @@ crate-type = ["cdylib"]
 [dependencies]
 wasm-bindgen = "0.2.59"
 
+[dependencies.web-sys]
+version = "0.3.4"
+features = [
+    'Document',
+    'Element',
+    'HtmlElement',
+    'Node',
+    'Window',
+]
