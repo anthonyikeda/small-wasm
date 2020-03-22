@@ -1,7 +1,7 @@
 [package]
 name = "small-wasm"
-version = "0.2.0"
-authors = ["Anthony Ikeda <anthony.ikeda@cognizant.com>"]
+version = "0.3.0"
+authors = ["Anthony Ikeda <anthony.ikeda@gmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -9,14 +9,15 @@ edition = "2018"
 crate-type = ["cdylib"]
 
 [dependencies]
+js-sys = "0.3.36"
 wasm-bindgen = "0.2.59"
 
 [dependencies.web-sys]
 version = "0.3.4"
 features = [
+    'CanvasRenderingContext2d',
     'Document',
     'Element',
-    'HtmlElement',
-    'Node',
+    'HtmlCanvasElement',
     'Window',
 ]

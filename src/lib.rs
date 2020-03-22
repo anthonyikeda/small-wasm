@@ -4,14 +4,29 @@ use wasm_bindgen::prelude::*;
 pub fn run() -> Result<(), JsValue> {
     let window = web_sys::window().expect("no global `window` exists");
     let document = window.document().expect("should have a document on window");
-    let body = document.body().expect("document should have a body");
+    let cancas = document.get_element_by_id("canvas")?;
+    let canvas: web_sys::HtmlCanvasElement = canvas
+        .dyn_into::<web_sys::HtmlCanvasElement>()
+        .map_err(|_| ())
+        .unwrap();
 
-    let val = document.create_element("p")?;
-    val.set_inner_html("Hello from Rust!");
+    let context = canvas
+        .get_context("2d")
+        .unwrap()
+        .unwrap()
+        .dyn_into::<web_sys::CanvasRenderingContext2d>()
+        .unwrap();
+    
+    context.begin_path();
 
-    body.append_child(&val)?;
+    context
+        .arc(75.0, 75.0, 50.0, 0.0, f64::consts::PI * 2.0)
+        .unwrap();
+    
+    context.move_to(110.0, 75.0);
+    context.arc(75.0, 75.0, 35.0, 0.0, f64::consts::PI)unwrap();
 
-    Ok(())
+    context.move_to(65.0, 65.0);
 }
 
 #[wasm_bindgen]
